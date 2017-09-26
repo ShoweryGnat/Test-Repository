@@ -14,5 +14,8 @@ private:
 	// any private member variables and methods go here
 
 	// TO BE COMPLETED
-
+	PriceList price_list;
+	double total;
+	double tax_rate;
+	// Add? PriceListItem *itemList;
 };
