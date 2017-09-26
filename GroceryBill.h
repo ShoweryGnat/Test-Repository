@@ -5,6 +5,10 @@
 class GroceryBill {
 public:
 	GroceryBill(const PriceList *priceList, double taxRate);
+	~GroceryBill();
+	//GroceryBill(GroceryBill & g);//copy constructor
+	GroceryBill & operator=(const GroceryBill & a); //operator=
+
 	void scanItem(string scanCode, double quantity); // add item and quantity to bill; throw exception if item's code is not found in the pricelist
 	void scanItemsFromFile(string filename); // Scan multiple codes and quantities from the given text file
 	double getTotal(); // return the total cost of all items scanned
@@ -14,8 +18,10 @@ private:
 	// any private member variables and methods go here
 
 	// TO BE COMPLETED
-	PriceList price_list;
+	const PriceList * price_list;
 	double total;
 	double tax_rate;
-	// Add? PriceListItem *itemList;
+	PriceListItem * bill;
+	int s;//size of bill
+	
 };

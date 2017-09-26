@@ -7,6 +7,10 @@ using namespace std;
 
 class PriceList {
 public:
+	PriceList();
+	~PriceList();
+	PriceList(PriceList & p);//copy constructor
+	PriceList & operator=(const PriceList & a);
 
 	void createPriceListFromDatafile(string filename); // Load information from a text file with the given filename (Completed)
 	void addEntry(string itemName, string code, double price, bool taxable); // add to the price list information about a new item. A max of 1,000,000 entries can be added
@@ -19,6 +23,8 @@ private:
 	// other variables required to implement the public member functions
 	// TO BE COMPLETED
 	PriceListItem *itemList;
+	int size;
+
 
 
 };

@@ -30,9 +30,20 @@ double PriceListItem::getPrice() {
 	// TO BE COMPLETED
 	return price1;
 }
+void PriceListItem::setPrice(double val) {
+	price1 = val;
+}
 
 bool PriceListItem::isTaxable() {
 	// TO BE COMPLETED
 	return taxable1;
 }
 
+PriceListItem & PriceListItem::operator= (PriceListItem & a)
+{
+	itemName1 = a.itemName1;
+	code1 = a.code1;
+	price1 = a.price1;
+	taxable1 = a.taxable1;
+	return (*this);
+}

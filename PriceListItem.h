@@ -10,8 +10,10 @@ public:
 	string getItemName();
 	string getCode();
 	double getPrice();
+	void setPrice(double val);
 	bool isTaxable();
-	// Add? PriceListItem *next;
+	PriceListItem & operator= (PriceListItem & a);
+	
 private:
 	// any private member variables and methods go here
 	// TO BE COMPLETED
