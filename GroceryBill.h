@@ -6,7 +6,7 @@ class GroceryBill {
 public:
 	GroceryBill(const PriceList *priceList, double taxRate);
 	~GroceryBill();
-	//GroceryBill(GroceryBill & g);//copy constructor
+	GroceryBill(GroceryBill & g);//copy constructor
 	GroceryBill & operator=(const GroceryBill & a); //operator=
 
 	void scanItem(string scanCode, double quantity); // add item and quantity to bill; throw exception if item's code is not found in the pricelist

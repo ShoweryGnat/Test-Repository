@@ -115,7 +115,13 @@ void PriceList::addEntry(string itemName, string code, double price, bool taxabl
 	{
 		temp[i] = itemList[i];
 	}
-	itemList = temp;
+	delete[] itemList;
+	itemList = new PriceListItem[size+1];
+	for (int i = 0; i < size+1; i++)
+	{
+		itemList[i] = temp[i];
+	}
+	delete[] temp;
 
 	PriceListItem temp_(itemName, code, price, taxable);
 	itemList[size] = temp_;

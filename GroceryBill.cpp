@@ -19,6 +19,19 @@ GroceryBill::~GroceryBill()
 {
 	delete price_list;
 }
+GroceryBill::GroceryBill(GroceryBill & g)
+{
+	price_list = new PriceList;
+	price_list = g.price_list;
+	tax_rate = g.tax_rate;
+	bill = new PriceListItem[g.s];
+	for (int i = 0; i < g.s; i++)
+	{
+		bill[i] = g.bill[i];
+	}
+	s = g.s;
+	total = g.total;
+}
 GroceryBill & GroceryBill::operator=(const GroceryBill & a)
 {
 	if (this != &a)
@@ -43,6 +56,7 @@ void GroceryBill::scanItem(string scanCode, double quantity)
 	if (temp.isTaxable())
 	{
 		temp.setPrice(temp.getPrice() + (tax_rate*temp.getPrice()));
+		temp.setPrice(tax_rate*temp.getPrice());
 	}
 
 	PriceListItem * t;
@@ -52,10 +66,17 @@ void GroceryBill::scanItem(string scanCode, double quantity)
 	{
 		t[i] = bill[i];
 	}
-	bill = t;
-
-	bill[s] = temp;
 	s++;
+	delete[] bill;
+	bill = new PriceListItem[s];
+	for (int i = 0; i < s; i++)
+	{
+		bill[i] = t[i];
+	}
+	delete[] t;
+
+	bill[s-1] = temp;
+
 	total = total + temp.getPrice();
 }
 
@@ -110,7 +131,7 @@ void GroceryBill::printBill() {
 		}
 		cout << bill[i].getItemName() << "   " << bill[i].getPrice() << "   " << letter << endl;
 	}
-	cout << "TOTAL     " << getTotal();
+	cout << "TOTAL     " << getTotal() << endl;
 
 }
 

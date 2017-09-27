@@ -41,9 +41,12 @@ bool PriceListItem::isTaxable() {
 
 PriceListItem & PriceListItem::operator= (PriceListItem & a)
 {
-	itemName1 = a.itemName1;
-	code1 = a.code1;
-	price1 = a.price1;
-	taxable1 = a.taxable1;
+	if (this != &a)
+	{
+		itemName1 = a.itemName1;
+		code1 = a.code1;
+		price1 = a.price1;
+		taxable1 = a.taxable1;
+	}
 	return (*this);
 }
