@@ -76,11 +76,11 @@ void GroceryBill::scanItemsFromFile(string filename) {
 
 	if (myFile.is_open()) {
 		cout << "Successfully opened file " << filename << endl;
-		int c;
+		string code;
 		double quantity;
 		while (myFile >> c >> quantity) {
 
-			string code = c + "";
+			//string code = c + "";
 
 			cout << code << " " << quantity << endl;
 			scanItem(code, quantity);
