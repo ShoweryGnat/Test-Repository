@@ -9,7 +9,7 @@ using namespace std;
 
 PriceList::PriceList()
 {
-	itemList = new PriceListItem[0];
+	itemList = new PriceListItem[100000];
 	size = 0;
 }
 PriceList::~PriceList()
@@ -19,7 +19,7 @@ PriceList::~PriceList()
 PriceList::PriceList(PriceList & p)
 {
 	size = p.size;
-	itemList = new PriceListItem[p.size];
+	itemList = new PriceListItem[100000];
 	for (int i = 0; i < size; i++)
 	{
 		itemList[i] = p.itemList[i];
@@ -31,7 +31,7 @@ PriceList & PriceList::operator=(const PriceList & a)
 	{
 		size = a.size;
 		delete[] itemList;
-		itemList = new PriceListItem[a.size];
+		itemList = new PriceListItem[1000];
 		for(int i = 0; i < a.size; i++)
 		{
 			itemList[i] = a.itemList[i];
@@ -105,23 +105,6 @@ PriceListItem PriceList::getItem(string code) const {
 // add to the price list information about a new item
 void PriceList::addEntry(string itemName, string code, double price, bool taxable) {
 	// TO BE COMPLETED
-
-	//make array larger
-
-	PriceListItem * temp;
-	temp = new PriceListItem[size + 1];
-	
-	for (int i = 0; i < size; i++)
-	{
-		temp[i] = itemList[i];
-	}
-	delete[] itemList;
-	itemList = new PriceListItem[size+1];
-	for (int i = 0; i < size+1; i++)
-	{
-		itemList[i] = temp[i];
-	}
-	delete[] temp;
 
 	PriceListItem temp_(itemName, code, price, taxable);
 	itemList[size] = temp_;

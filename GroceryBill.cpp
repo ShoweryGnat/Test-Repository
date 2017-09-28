@@ -9,8 +9,8 @@ GroceryBill::GroceryBill(const PriceList *priceList, double taxRate) {
 	// To be completed
 	price_list = new PriceList;
 	price_list = priceList;
-	tax_rate = taxRate;
-	bill = new PriceListItem[0];
+	tax_rate = taxRate/100;
+	bill = new PriceListItem[1000];
 	s = 0;
 	total = 0;
 
@@ -24,7 +24,7 @@ GroceryBill::GroceryBill(GroceryBill & g)
 	price_list = new PriceList;
 	price_list = g.price_list;
 	tax_rate = g.tax_rate;
-	bill = new PriceListItem[g.s];
+	bill = new PriceListItem[1000];
 	for (int i = 0; i < g.s; i++)
 	{
 		bill[i] = g.bill[i];
@@ -56,27 +56,10 @@ void GroceryBill::scanItem(string scanCode, double quantity)
 	if (temp.isTaxable())
 	{
 		temp.setPrice(temp.getPrice() + (tax_rate*temp.getPrice()));
-		temp.setPrice(tax_rate*temp.getPrice());
 	}
-
-	PriceListItem * t;
-	t = new PriceListItem[s + 1];
-
-	for (int i = 0; i < s; i++)
-	{
-		t[i] = bill[i];
-	}
+	
+	bill[s] = temp;
 	s++;
-	delete[] bill;
-	bill = new PriceListItem[s];
-	for (int i = 0; i < s; i++)
-	{
-		bill[i] = t[i];
-	}
-	delete[] t;
-
-	bill[s-1] = temp;
-
 	total = total + temp.getPrice();
 }
 
@@ -91,12 +74,15 @@ void GroceryBill::scanItemsFromFile(string filename) {
 
 	if (myFile.is_open()) {
 		cout << "Successfully opened file " << filename << endl;
-		int code;
+		int c;
 		double quantity;
-		while (myFile >> code >> quantity) {
+		while (myFile >> c >> quantity) {
 
-			string c = "" + code;
-			scanItem(c, quantity);
+			string code = c + "";
+
+			cout << code << " " << quantity << endl;
+			scanItem(code, quantity);
+
 		}
 		myFile.close();
 	}
@@ -129,6 +115,7 @@ void GroceryBill::printBill() {
 		{
 			letter = "T";
 		}
+
 		cout << bill[i].getItemName() << "   " << bill[i].getPrice() << "   " << letter << endl;
 	}
 	cout << "TOTAL     " << getTotal() << endl;

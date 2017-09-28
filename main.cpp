@@ -72,8 +72,9 @@ int main() {
 		// test capacity of the PriceList class
 		PriceList priceList;
 		for (int i = 1; i < 100000; i++)
-		//for (int i = 1; i < 100; i++)
+		{
 			priceList.addEntry(string("Apples_") + to_string(i), to_string(i), 1.99, false);
+		}
 		testAnswer("PriceList big data1", priceList.isValid("20000"), true);
 		testAnswer("PriceList big data2", priceList.isValid("100000"), false);
 	}
