@@ -15,6 +15,7 @@ GroceryBill::GroceryBill(const PriceList *priceList, double taxRate) {
 	total = 0;
 	
 
+	
 }
 GroceryBill::~GroceryBill()
 {
