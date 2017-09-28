@@ -113,6 +113,7 @@ void GroceryBill::printBill() {
 	string letter = "";
 	for (int i = 0; i < s; i++)
 	{
+		letter = "";
 		if (bill[i].isTaxable())
 		{
 			letter = "T";
