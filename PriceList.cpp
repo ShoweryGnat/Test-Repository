@@ -9,7 +9,7 @@ using namespace std;
 
 PriceList::PriceList()
 {
-	itemList = new PriceListItem[100000];
+	itemList = new PriceListItem[1000000];
 	size = 0;
 }
 PriceList::~PriceList()
@@ -19,7 +19,7 @@ PriceList::~PriceList()
 PriceList::PriceList(PriceList & p)
 {
 	size = p.size;
-	itemList = new PriceListItem[100000];
+	itemList = new PriceListItem[1000000];
 	for (int i = 0; i < size; i++)
 	{
 		itemList[i] = p.itemList[i];
@@ -31,7 +31,7 @@ PriceList & PriceList::operator=(const PriceList & a)
 	{
 		size = a.size;
 		delete[] itemList;
-		itemList = new PriceListItem[1000];
+		itemList = new PriceListItem[1000000];
 		for(int i = 0; i < a.size; i++)
 		{
 			itemList[i] = a.itemList[i];
